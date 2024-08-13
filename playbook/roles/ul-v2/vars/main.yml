@@ -1,0 +1,8 @@
+#############################################################
+# LISTE DES VARIABLES PROPRE AU ROLE DU PLAYBOOK   #
+# ###########################################################
+ma_variable_dans_vars:
+    - var: 'var1'
+    - var: 'var2'
+    - var: 'var3'
+    - var: 'var4'

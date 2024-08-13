@@ -1,0 +1,19 @@
+---
+###################################################################################################################
+####  DES TASKS DEJA FOURNIT PAR ANSIBLE SUR => https://docs.ansible.com/ansible/latest/collections/index.html ####
+###################################################################################################################
+- name: <<<<NOM DU PLAYBOOK>>>>
+  hosts: <<<<HOST_NAME_CHOOSE>>>>
+# OPTION A DECOMMENTER AU BESOIN !!!!
+#  become: true
+#  become_method: sudo
+#  become_user: docker
+#  vars:
+#    ansible_become_pass: "password"
+  tasks:
+    - name: Lancement du echo hello world
+      debug:
+      msg: 'HelloWorld'
+# OPTION SI CELLE-CI EST CONSIDERE NON BLOCANTE
+#      ignore_errors: yes
+

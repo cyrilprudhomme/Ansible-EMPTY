@@ -1,0 +1,18 @@
+########################################################
+# Serveurs unitaires                                   #
+########################################################
+
+win001.xx.xx ansible_host=win001.xx.xx ansible_ssh_user="{{ XXXX.user }}" ansible_ssh_pass="{{ XXXX.password }}"
+win002.xx.xx ansible_host=win002.xx.xx ansible_ssh_user="{{ XXXX.user }}" ansible_ssh_pass="{{ XXXX.password }}"
+win003.xx.xx ansible_host=XXXX.SIU.CENTRAL ansible_user="{{ XXXX.user }}" ansible_password="{{ XXXX.password }}" ansible_connection=winrm ansible_winrm_scheme=http ansible_port=5985 ansible_winrm_server_cert_validation=ignore ansible_winrm_transport=ntlm
+win004.xx.xx ansible_host=XXXX.SIU.CENTRAL ansible_user="{{ XXXX.user }}" ansible_password="{{ XXXX.password }}" ansible_connection=winrm ansible_winrm_scheme=https ansible_port=5986 ansible_winrm_server_cert_validation=validate ansible_winrm_transport=ntlm ansible_winrm_ca_trust_path=/usr/local/share/ca-certificates/XXXXXXX.crt
+
+########################################################
+# Groupes de serveurs                                  #
+########################################################
+
+[serveur_windows]
+win001.xx.xx
+win002.xx.xx
+win003.xx.xx
+win004.xx.xx

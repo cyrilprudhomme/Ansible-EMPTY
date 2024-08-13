@@ -1,0 +1,4 @@
+---
+- name: Lancement du echo hello world
+  debug:
+  msg: 'HelloWorld'

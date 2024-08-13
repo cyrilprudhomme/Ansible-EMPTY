@@ -1,0 +1,89 @@
+---
+###################################################################################################################
+####  DES TASKS DEJA FOURNIT PAR ANSIBLE SUR => https://docs.ansible.com/ansible/latest/collections/index.html ####
+###################################################################################################################
+- name: Je lance un autre yaml
+  include_tasks:
+    file: premier_sous_lot.yml
+  when: '"<<<<HOST_NAME_CHOOSE>>>>" in ansible_host'
+
+- name: Liste de mes taches
+  tasks:
+    - name: Lancement du echo hello world
+      debug:
+      msg: 'HelloWorld'
+    ############################################################################
+    ####                               LINUX                                ####
+    ############################################################################
+
+    ####  WHOAMI ####
+    - name: Run whoami without become.
+      command: whoami
+      changed_when: false
+      # become: true
+      ####  ENREGISTREMENT DANS LA VARIABLE WHOAMI ####
+      register: whoami
+
+    ####  AFFICHAGE DE LA VARIABLE WHOAMI ####
+    - name: Set a fact with the user name.
+      set_fact:
+        ####  stdout CONTIENT LE MESSAGE / LE SUPPRIMER POUR AVOIR TOUTES LES INFOS DE LA VARIABLE ####
+        login_user: "{{ whoami.stdout }}"
+
+    ####  COMMAND ####
+    - name: Lancement de la command
+      command: echo "ma command"
+
+    ####  SHELL ####
+    - name: Lancement de la command shell
+      shell: "echo 'ma command'"
+
+    ####  COPY FILE ####
+    - name: copy files
+      copy:
+        src: "{{ item }}"
+        dest: "$HOME/{{ item }}"
+        mode: u=rwx,g=rwx,o=rwx
+      loop:
+        - ./{{ FOLDER }}/
+
+    ####  UTILISATION D'UN TEMPLATE JINJA2 ####
+    - name: Utilisation du template
+      template:
+        src: template.j2
+        dest: $HOME/fichierfinal.extension
+
+    ############################################################################
+    ####                              WINDOWS                               ####
+    ############################################################################
+
+    ####  COPY FILE ####
+    - name: Copy 7Zip
+      ansible.windows.win_copy:
+        src: /mnt/INSTALL/Tools/7z2201-extra
+        dest: D:\Tools
+        force: false
+
+    ####  CREATION DE DOSSIER ####
+    - name: Création d'un dossier
+      ansible.windows.win_file:
+        path: D:\XXXX\XXXX\XXXX
+        state: directory
+
+    ####  LANCEMENT D'UN EXE ####
+    - name: Install Adelia Runtime 14.8.3
+      ansible.windows.win_package:
+        path: D:\XXXX\XXXX\XXXX.exe
+        product_id: '{1A2Z3E4R5T6Y7U8I9O0P}'
+        arguments: xxxxxxx
+        state: present
+
+    ####  PARTAGE DE FICHIER ####
+    - name: Partage d'un dossier
+      ansible.windows.win_share:
+        name: XXXX
+        description: XXXX XXXX
+        path: D:\XXXX\XXXX\XXXX
+        list: yes
+        full: "{{ XXXX.user }}"
+        read: Tout le monde

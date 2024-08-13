@@ -1,0 +1,12 @@
+---
+- name: <<<<NOM DU PLAYBOOK>>>>
+  hosts: <<<<HOST_NAME_CHOOSE>>>>
+  # OPTION A DECOMMENTER AU BESOIN !!!!
+  #  become: true
+  #  become_method: sudo
+  #  become_user: docker
+  #  vars:
+  #    ansible_become_pass: "password"
+  roles:
+    - my-first-role
+ 

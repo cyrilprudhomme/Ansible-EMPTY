@@ -1,0 +1,4 @@
+---
+- name: activate handlers
+  debug:
+    msg: my super handlers

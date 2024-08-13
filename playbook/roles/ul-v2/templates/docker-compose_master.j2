@@ -1,0 +1,9 @@
+#jinja2: lstrip_blocks:True
+
+
+{% for item in ma_variable_dans_vars %}
+  {{ item.var }}:
+{% if item.var is not defined %}
+    mavaralavaleur: {{ item.var }}
+{% endif %}
+{% endfor %}
